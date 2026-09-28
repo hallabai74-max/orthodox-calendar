@@ -1,1 +1,24 @@
-
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>365일 정교회 성인 축일 달력</title>
+<style>
+:root{--wine:#421820;--gold:#c49a42;--paper:#fffaf0;--ink:#2e2421}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif}header{background:var(--wine);color:#fff;text-align:center;padding:42px 18px;border-bottom:4px solid var(--gold)}header small{color:#e9c66d;letter-spacing:.16em;font-weight:800}h1{margin:10px 0 6px;font-size:clamp(27px,5vw,44px)}header p{margin:0;color:#efdca9}.wrap{max-width:1080px;margin:auto;padding:20px}.notice{border:1px solid #dcc48b;background:#fff;border-radius:16px;padding:18px;margin-bottom:16px}.toolbar{position:sticky;top:0;background:#fffaf0eF;backdrop-filter:blur(8px);padding:12px 0;z-index:5}.search{display:flex;gap:8px}.search input{width:100%;padding:14px 16px;border:1px solid #cdbb96;border-radius:12px;font-size:16px}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}button{border:1px solid #b89345;background:#fff;padding:10px 13px;border-radius:10px;font-weight:700;color:#57222c;cursor:pointer}.months{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.months button{padding:12px 4px}.card{background:#fff;border:1px solid #dfc990;border-radius:18px;padding:22px;box-shadow:0 6px 22px #6c522515}.card h2{color:#6f2332}.status{font-size:14px;color:#745f4e}.footer{text-align:center;padding:30px;color:#806f5e}@media(max-width:650px){.months{grid-template-columns:repeat(4,1fr)}header{padding:30px 14px}.wrap{padding:12px}}@media print{header,.toolbar,.months,.notice,.footer{display:none}.card{border:0;box-shadow:none}}
+</style>
+</head><body>
+<header><small>ORTHODOX SAINTS &amp; FEASTS</small><h1>☦ 365일 정교회 성인 축일 달력</h1><p>하루마다 만나는 거룩한 삶과 축일의 성화</p></header>
+<main class="wrap">
+<div class="notice"><b>새 홈페이지 구조 준비 완료</b><br>기존 365일 달력 원본의 방대한 내용과 성화는 보존하면서, 빠른 검색·다양한 보기·PDF 저장이 가능한 구조로 단계적으로 이전합니다.</div>
+<div class="toolbar"><div class="search"><input id="q" placeholder="성인·축일·날짜·중보기도 검색" oninput="filter()"></div><div class="buttons"><button onclick="setView('basic')">기본 보기</button><button onclick="setView('compact')">간단히 보기</button><button onclick="setView('card')">카드형</button><button onclick="window.print()">PDF 저장 / 인쇄</button><button onclick="today()">오늘 날짜</button></div></div>
+<div class="months" id="months"></div>
+<section class="card" id="content"><h2>☦ 달력 데이터 이전 준비 중</h2><p>기존 완성본은 약 150MB 규모로 성화 이미지가 HTML 안에 포함되어 있습니다. 앞으로 이미지를 별도 자산으로 분리해 사이트 속도와 관리성을 높이고, 365일 상세 내용과 호칭기도를 그대로 연결합니다.</p><p class="status">GitHub 저장소와 연결된 관리용 홈페이지가 정상적으로 시작되었습니다.</p></section>
+<div class="footer">☦ Orthodox Saints &amp; Feasts</div>
+</main>
+<script>
+const m=document.getElementById('months');for(let i=1;i<=12;i++){let b=document.createElement('button');b.textContent=i+'월';b.onclick=()=>month(i);m.appendChild(b)}
+function month(n){document.getElementById('content').innerHTML='<h2>☦ '+n+'월 성인과 축일</h2><p>이 영역에 기존 완성본의 '+n+'월 상세 데이터와 성화·호칭기도가 연결됩니다.</p>'}
+function today(){const d=new Date();month(d.getMonth()+1)}
+function filter(){const q=document.getElementById('q').value.trim();if(q)document.getElementById('content').innerHTML='<h2>검색: '+q.replace(/[<>]/g,'')+'</h2><p>전체 365일 데이터 분리 작업 후 이 검색창에서 성인명·축일·중보기도·날짜를 한 번에 검색할 수 있습니다.</p>'}
+function setView(v){document.body.dataset.view=v;document.getElementById('content').style.maxWidth=v==='compact'?'720px':'none'}
+</script></body></html>
