@@ -1,0 +1,33 @@
+.calendar-tools{max-width:760px;margin:0 auto 8px;padding:14px;background:#fffdf8;border:1px solid #ddcfaa;border-radius:16px;box-shadow:0 3px 14px #33201410}
+.calendar-tools h2{font-size:17px;margin:0 0 10px;color:#65323b}
+.tool-grid{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:9px}
+.calendar-tools input,.calendar-tools select,.calendar-tools button{font:inherit;min-width:0;border:1px solid #bba77c;border-radius:9px;min-height:42px;padding:8px 11px;background:#fff;color:#17213a}
+.calendar-tools input:focus-visible,.calendar-tools select:focus-visible,.calendar-tools button:focus-visible{outline:3px solid #be913e;outline-offset:2px}
+.tool-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.calendar-tools .download-pdf{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 12px;border:1px solid #702f3d;border-radius:9px;background:#702f3d;color:#fff;text-decoration:none;font-weight:800}.calendar-tools .download-pdf:hover{background:#532330}.calendar-tools .download-pdf:focus-visible{outline:3px solid #be913e;outline-offset:2px}
+.calendar-tools button{cursor:pointer;background:#702f3d;color:white;border-color:#702f3d;font-weight:800}
+.calendar-tools button.secondary{background:#fffaf1;color:#702f3d}
+.calendar-tools button:hover{background:#532330;color:#fff}
+.tool-status{margin:9px 0 0;font-size:13px;color:#695c4b;min-height:1.2em}
+.entry[hidden],.month[hidden]{display:none!important}
+.month{scroll-margin-top:62px}
+.entry{scroll-margin-top:62px}
+.quick a:focus-visible{outline:3px solid #be913e;outline-offset:2px}
+@media(max-width:600px){.calendar-tools{margin:0 4px 8px;padding:12px}.tool-grid{grid-template-columns:minmax(0,1fr) 104px}.tool-actions button,.tool-actions .download-pdf{flex:1 1 120px}.masthead h1{font-size:clamp(20px,6vw,27px)}.month{overflow:hidden}.entryBody>.saint-row{min-width:0}.entry .icon-strip{min-width:0;max-width:100%}.entry .icon-strip figure{margin:0}.entry .icon-strip img{max-width:100%;height:auto;aspect-ratio:64/78}.entryBody>details .deepDetail{overflow-wrap:anywhere}.quick{scrollbar-width:thin}}
+@media(max-width:380px){.calendar-tools{padding:10px}.tool-grid{grid-template-columns:1fr}.tool-actions button,.tool-actions .download-pdf{flex-basis:100%}.entry{padding:9px}.entry .icon-strip figure,.entry .icon-strip img{width:55px}.entryBody>details>summary{font-size:13px!important}}
+@media print{
+ @page{size:A4;margin:15mm 12mm}
+ body{background:white;color:#17213a;font-size:10pt}
+ .masthead{padding:0 0 10px;background:white!important;color:#17213a;border-bottom:2px solid #b89335}
+ .masthead-inner{padding:0!important;display:block!important}.masthead-title{padding:0!important}.masthead h1{font-size:18pt}.masthead p,.masthead-kicker,.hero-frame{display:none!important}
+ main{max-width:none;padding:0}.calendar-tools,.quick,.icon-guide,.entryBody>details,.offline-dialog,body>div:last-child{display:none!important}
+ .month{break-before:page;margin:0;padding:0;border:0;box-shadow:none;background:white}
+ .month:first-of-type{break-before:auto}
+ .month-head{min-height:0!important;margin:0 0 10px!important;padding:0!important;background:white!important;color:#17213a!important;border-bottom:1px solid #b89335}
+ .month-head:before,.month-head-copy:after{display:none!important}.month-head-copy{padding:0!important}.month h2{margin:3px 0;font-size:17pt;text-align:left;color:#17213a}
+ .entry{break-inside:avoid;box-shadow:none!important;background:white;border:0;border-bottom:1px solid #dfd8c8;border-radius:0;margin:0;padding:5px 0;grid-template-columns:25px minmax(0,1fr);gap:8px}
+ .entry .dateNo{width:24px;height:24px;background:#17213a;color:white;font-size:10pt;border-radius:5px}
+ .entryBody>.saint-row{display:block!important}.entry .icon-strip{display:none!important}.entryBody>.saint-row .saint{font-size:10pt!important;line-height:1.3;padding:0!important}
+ .entryBody>.badges{margin:2px 0 0!important}.badges span{font-size:7pt;padding:1px 4px}
+ body.print-month .month:not(.print-selected){display:none!important}
+}
