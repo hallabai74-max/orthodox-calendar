@@ -1,5 +1,5 @@
-const CACHE='catholic365-v3-january-depth-20260930';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./padre-pio-icon.jpg','./data/january-2026.js','./data/february-2026.js','./data/march-2026.js','./data/april-2026.js','./data/may-2026.js','./data/june-2026.js','./data/july-2026.js','./data/august-2026.js','./data/september-2026.js','./data/october-2026.js','./data/november-2026.js','./data/december-2026.js'];
+const CACHE='catholic365-v4-january-depth-20260930';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./padre-pio-icon.jpg','./data/january-2026.js?v=20260930-depth1','./data/february-2026.js','./data/march-2026.js','./data/april-2026.js','./data/may-2026.js','./data/june-2026.js','./data/july-2026.js','./data/august-2026.js','./data/september-2026.js','./data/october-2026.js','./data/november-2026.js','./data/december-2026.js'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r;}).catch(()=>caches.match('./index.html'))));});
