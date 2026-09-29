@@ -1,0 +1,33 @@
+name: Connect era litany safely
+on:
+  push:
+    paths:
+      - '.github/workflows/connect-era-litany.yml'
+permissions:
+  contents: write
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Connect external era litany without replacing calendar data
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          marker = 'data-era-litany-loader="v1"'
+          if marker not in s:
+              script = '''\n<script data-era-litany-loader="v1">\n(function(){\n  function loadEraLitany(){\n    var old=document.querySelector('.era-litany-wrap');\n    if(!old) return;\n    fetch('era-litany.html?v=20260930',{cache:'no-cache'})\n      .then(function(r){if(!r.ok) throw new Error('era-litany load failed'); return r.text();})\n      .then(function(html){\n        var box=document.createElement('div'); box.innerHTML=html.trim();\n        var fresh=box.firstElementChild;\n        if(fresh) old.replaceWith(fresh);\n      })\n      .catch(function(e){console.warn(e);});\n  }\n  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadEraLitany);\n  else loadEraLitany();\n})();\n</script>\n'''
+              if '</body>' not in s:
+                  raise SystemExit('No </body> marker; refusing to modify index.html')
+              s = s.replace('</body>', script + '</body>', 1)
+              p.write_text(s, encoding='utf-8')
+      - name: Commit only the safe loader change
+        run: |
+          if git diff --quiet -- index.html; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Connect 1-9 era litany cards to main calendar [skip ci]"
+          git push
